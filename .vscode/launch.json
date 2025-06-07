@@ -1,0 +1,18 @@
+/** LEARNED
+ * this is one way of getting tsx/ts files to run
+ * by automatically setting this to the launch, I can use runtimeargs and
+ * runtime executable to customize my config.
+**/
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run TSX file",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["tsx", "${file}"], //? Are spaces then considered like commas for bash scripts?
+      "skipFiles": ["<node_internals>/**"] //? I wonder what this does
+    }
+  ]
+}
