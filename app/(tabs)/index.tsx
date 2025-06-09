@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Listing from '@features/listings/ListingDetails'
-import { RateType, ListingParams, User } from 'features/commonl-lib';
+import { RateType, ListingParams, User } from '@/features/common-lib';
+//TODO - Divide my (tabs) files into modular components.
+//TODO - Comment all my components and code.
 
 export default function App() {
   
+  // Hello world equivalent of my listing details class.4
   let HelloListing = new Listing({
     owner: { name: "Terry"},
     price: 2222,

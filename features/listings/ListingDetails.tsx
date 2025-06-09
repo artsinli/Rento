@@ -1,5 +1,5 @@
 
-import { RateType, ListingParams, User } from '../commonl-lib';
+import { RateType, ListingParams, User } from '../common-lib';
 
 export default class Listing {
     id: number;
