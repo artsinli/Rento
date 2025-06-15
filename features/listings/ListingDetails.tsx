@@ -1,8 +1,8 @@
-
+import { v4 as uuidv4 } from 'uuid';
 import { RateType, ListingParams, User } from '../common-lib';
 
 export default class Listing {
-    id: number;
+    id: string;
     owner: User;
     price: number;
     rateType: RateType;
@@ -17,12 +17,7 @@ export default class Listing {
      *   - comment?: string (optional)
      */
     constructor(params: Partial<ListingParams>){
-        const _hashFunction = (n: number): number => {
-            const prime1 = 31;
-            const prime2 = 17;
-            return ((n * prime1) ^ prime2) >>> 0;  // >>> 0 ensures positive number
-        }
-        this.id = _hashFunction(Date.now());
+        this.id = uuidv4();
         this.owner = params.owner!;
         this.price = params.price!;
         this.rateType = params.rateType!;
