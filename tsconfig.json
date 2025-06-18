@@ -5,12 +5,10 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@features/*": [
-        "./features/*"
-      ]
+      "@/*": ["./*"],
+      "@features/*": ["./features/*"],
+      "@containers/*": ["./src/components/containers/*"],
+      "@components/*": ["./src/components/*"],
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
