@@ -29,5 +29,8 @@ export default class Listing {
     public DisplayListing() {
         return 'The owned of this listing is ' + this.owner.name + ' listed for ' + this.price + ' with ID ' + this.id;
     }
+    public ExtractListingData() {
+        return [this.id, this.owner.name, this.price]
+    }
 }
 

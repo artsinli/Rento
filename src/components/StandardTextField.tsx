@@ -11,7 +11,7 @@ type Props = TextInputProps &{
     containerStyle?: ViewStyle,
 };
 
-export function TextField({ style, containerStyle, ...rest }: Props){
+export default function StandardTextField({ style, containerStyle, ...rest }: Props){
     return(
         <TextInput
             style={[styles.input, style]}

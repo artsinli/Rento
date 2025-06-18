@@ -1,32 +1,60 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import Listing from '@features/listings/ListingDetails'
-import { RateType, ListingParams, User } from '@/src/commonlib';
-//TODO - Divide my (tabs) files into modular components.
-//TODO - Comment all my components and code.
+import { RateType } from '@/src/commonlib';
+import ListingMiniViewWindow from '@/src/components/ListingMiniViewWindow';
+
 
 export default function App() {
   
-  // Hello world equivalent of my listing details class.4
-  let HelloListing = new Listing({
-    owner: { name: "Terry"},
-    price: 2222,
-    rateType: RateType.DAILY,
-  })
+  const listings = [
+    new Listing({
+      owner: { name: "Terry" },
+      price: 2222,
+      rateType: RateType.DAILY,
+    }),
+    new Listing({
+      owner: { name: "Alex" },
+      price: 3500,
+      rateType: RateType.DAILY,
+    }),
+    new Listing({
+      owner: { name: "Sam" },
+      price: 1200,
+      rateType: RateType.DAILY,
+    }),
+  ];
+
+  // 2) convert it into an array for FlatList
+  const data = listings.map((listing, index) => ({
+    key: index.toString(),
+    listing,
+  }));
 
   return (
-    <View style={styles.container}>
-      <Text>{HelloListing.DisplayListing()}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item.key}
+      renderItem={({ item }) => (
+        <ListingMiniViewWindow listing={item.listing}/>
+      )}
+      ListHeaderComponent={<StatusBar style="auto" />}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  row: {
+    flexDirection: 'row',
+    padding: 12,
+    borderBottomWidth: 1,
+    borderColor: '#eee',
+  },
+  label: {
+    fontWeight: 'bold',
+    marginRight: 6,
+  },
+  value: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
