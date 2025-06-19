@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import Listing from '@/features/listings/ListingDetails';
 
-//TODO - Extraction of data function, maybe in utils?
 //TODO - MiniViewWindow is a component that displays data and information in a mini card, needs listing details imported 
 // For now this can be almost like a postgres database viewer.
 
@@ -16,7 +15,7 @@ export default function ListingMiniViewWindow({ listing }: Props) {
             <Text style={styles.id}>{listing.id}</Text>
             <View style={styles.row}>
                 <Text style={styles.label}>{listing.owner.name}</Text>
-                <Text style={styles.price}>${listing.price.toLocaleString()}</Text>
+                <Text style={styles.price}>{listing.price.toLocaleString()}</Text>
             </View>
         </View>
     )

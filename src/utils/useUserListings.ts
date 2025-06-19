@@ -6,16 +6,19 @@ export default function useUserListings() {
     const address = 'http://localhost:3000/users';
     
     //TODO - TYpe my api call output from my table
+    //TODO - Hashmap of my listings 
+    //TODO - Only new data should be parsed in, perhaps too memory intensive?
 
-    const [users, setUsers] = useState<Listing[]>([])
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<null | string>(null);
+    //Hooks for loading, error getting, and user list handling
+    const [listings, setListings] = useState<Listing[]>([])               //Array of listings, can be empty at the start
+    const [loading, setLoading] = useState(true);                   //Current state is that loading is true while this runs
+    const [error, setError] = useState<null | string>(null);        //No errors, so start as null, but can be a string to display
 
-    
+    //Since we will be connecting to a PSQL database, useEffect is a good hook to use.
     useEffect(() => {
         fetch(address)
-            .then(res => res.json())
-            .then(data => {
+            .then(res => res.json()) //Read the promise response, convert to JSON
+            .then(data => { //Converts the data into a listing map
                 const listings = data.map((item: any) => new Listing({
                         id: item.id,
                         owner: {name: item.name}, //ugly, must fix
@@ -24,17 +27,20 @@ export default function useUserListings() {
                         comment: item.comment ?? null,
                     }
                 ))
-                setUsers(listings);
+                //Set states once loaded
+                setListings(listings);
                 setLoading(false);
             })
+            //If any errors are caught, return what the 
+            //error message is and the page loading to false
             .catch(err => {
                 setError(err.message);
                 setLoading(false);
             });
     }, []);  
 
-    //TODO - Convert this into a util
+    //NOTE - Consider making the conversion of the API calls into a listing
 
 
-    return { users, loading, error };
+    return { listings, loading, error };
 }

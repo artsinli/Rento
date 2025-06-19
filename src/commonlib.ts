@@ -3,7 +3,7 @@ export const enum RateType {
     DAILY = 'DAILY', 
 }
 //TODO - price needs to have its own interface so that it has a currency 
-// symbol etc. 
+// symbol etc. maybe even a library may exist for it
 export interface ListingParams {
     id: string,
     owner: User;

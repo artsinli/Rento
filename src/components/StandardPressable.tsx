@@ -1,3 +1,5 @@
+// GOAL
+// To have a simple view window element for a person, and their respective wealth/monetary value
 import {
   Pressable,
   Text,
@@ -21,7 +23,7 @@ export default function StandardPressable({
   parentStyle,
   buttonStyle,
   labelStyle,
-  ...rest
+  ...rest //all the props from the rest of the pressableprops type
 }: Props) {
   return (
     <Pressable
