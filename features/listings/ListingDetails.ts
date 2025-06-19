@@ -4,7 +4,7 @@ import { RateType, ListingParams, User } from '../../src/commonlib';
 export default class Listing {
     id: string;
     owner: User;
-    price: number;
+    price: string;
     rateType: RateType;
     comment?: string;
 
@@ -17,7 +17,7 @@ export default class Listing {
      *   - comment?: string (optional)
      */
     constructor(params: Partial<ListingParams>){
-        this.id = uuidv4();
+        this.id = params.id!;
         this.owner = params.owner!;
         this.price = params.price!;
         this.rateType = params.rateType!;

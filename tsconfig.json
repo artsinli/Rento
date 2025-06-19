@@ -9,6 +9,8 @@
       "@features/*": ["./features/*"],
       "@containers/*": ["./src/components/containers/*"],
       "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      
     },
     "allowImportingTsExtensions": true,
     "noEmit": true

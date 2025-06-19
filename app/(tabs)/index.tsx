@@ -1,42 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
 import Listing from '@features/listings/ListingDetails'
 import { RateType } from '@/src/commonlib';
 import ListingMiniViewWindow from '@/src/components/ListingMiniViewWindow';
-
+import useUserListings from '@/src/utils/useUserListings';
 
 export default function App() {
   
-  const listings = [
-    new Listing({
-      owner: { name: "Terry" },
-      price: 2222,
-      rateType: RateType.DAILY,
-    }),
-    new Listing({
-      owner: { name: "Alex" },
-      price: 3500,
-      rateType: RateType.DAILY,
-    }),
-    new Listing({
-      owner: { name: "Sam" },
-      price: 1200,
-      rateType: RateType.DAILY,
-    }),
-  ];
+  const { users, loading, error } = useUserListings();
 
-  // 2) convert it into an array for FlatList
-  const data = listings.map((listing, index) => ({
-    key: index.toString(),
-    listing,
-  }));
+  if (loading) return <ActivityIndicator/>;
+  if (error) return <Text>Error: {error}</Text>;
 
   return (
     <FlatList
-      data={data}
-      keyExtractor={(item) => item.key}
+      data={users}
+      keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <ListingMiniViewWindow listing={item.listing}/>
+        <ListingMiniViewWindow listing={item}/>
       )}
       ListHeaderComponent={<StatusBar style="auto" />}
     />
